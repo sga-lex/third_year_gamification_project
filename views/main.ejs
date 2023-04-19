@@ -1,0 +1,55 @@
+<%- include("partials/header"); -%>
+<h1>Welcome, <%= currentUser %>!</h1>
+<% if (adminUser) { %>
+<h2>Create a New Project:</h2>
+<form class="new-project" action="/main" method="post">
+  <div class="form-group">
+    <label>Title:</label>
+    <input class="form-control" type="text" name="postTitle">
+    <label>Description:</label>
+    <textarea class="form-control" name="postBody" rows="3" cols="30"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit" name="button">Publish</button>
+</form>
+<% } else { %>
+<form disabled>
+</form>
+<% } %>
+
+<div class="project">
+<%  posts.forEach(function(post){ %>
+<h3><%=post.title%></h3>
+<p>
+  <%=post.content.substring(0, 125) + " ..."%>
+  <a href="/posts/<%=post._id%>">Read More ... </a>
+  <% if (adminUser) { %>
+  <a href="/delete/<%= post._id %>"method="DELETE">Delete</a>
+</p>
+<% } %>
+<% }) %>
+</div>
+
+<div class="text-center pt-3 pb-2">
+  <h2 class="my-4">Leaderboard🕹️</h2>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% savedUsers.sort(function(a, b) { return b.score - a.score; }); %>
+    <% savedUsers.forEach(function(user, index) { %>
+    <tr>
+      <td><%= user.username %><%= index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '' %></td>
+      <td><%= user.score %></td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+
+
+<%- include("partials/footer"); -%>

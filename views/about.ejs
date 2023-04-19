@@ -1,0 +1,79 @@
+<%- include("partials/header"); -%>
+<div class="body">
+<h3 style="font-size: 2em;">You have <%= currentScore %> points!</h3>
+<% if(currentScore < 10) { %>
+  <h3 style="font-size: 2em;">Current badge: Beginner 💡</h3>
+<% } else if(currentScore < 20) { %>
+  <h3 style="font-size: 2em;">Current badge: Novice ✨</h3>
+<% } else if(currentScore < 30) { %>
+  <h3 style="font-size: 2em;">Current badge: Pro 🔥</h3>
+<% } else if(currentScore < 40) { %>
+  <h3 style="font-size: 2em;">Current badge: Master 👑</h3>
+<% } else if(currentScore < 50) { %>
+  <h3 style="font-size: 2em;">Current badge: Grand-Master ⭐</h3>
+<% } else if(currentScore < 60) { %>
+  <h3 style="font-size: 2em;">Current badge: Hall of Famer 🏆</h3>
+<% } %>
+
+
+<section class="vh-100 gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-10">
+        <div class="card mask-custom">
+          <div class="card-body p-4 text-white">
+            <div class="text-center pt-3 pb-2">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp" alt="Check" width="60">
+              <h2 class="my-4">Todo List - <%= listTitle %></h2>
+            </div>
+            <table class="table text-white mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Task</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Project</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Assgined By:</th>
+                  <th scope="col">Complete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% items.forEach(function(item) { %>
+                  <form method="POST" action="/delete">
+                    <input type="hidden" name="urgency" value="<%= item.urgency %>">
+                    <tr class="fw-normal">
+                      <th class="align-middle">
+                        <span><%= item.title %></span>
+                      </th>
+                      <td class="align-middle">
+                        <span><%= item.description %></span>
+                      </td>
+                      <td class="align-middle">
+                        <span><%= item.project %></span>
+                      </td>
+                      <td class="align-middle">
+                        <span><%= item.urgency %></span>
+                      </td>
+                      <td class="align-middle">
+                        <span><%= item.assignedBy %></span>
+                      </td>
+                      <td class="align-center">
+                        <div class="item">
+                          <input type="checkbox" name="checkbox" value="<%= item._id%>" onChange="this.form.submit()">
+                          <span data-hidden="true" style="display: none;"><%= item.title %></span>
+                        </div>
+                      </td>
+                    </tr>
+                  </form>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<%- include("partials/footer"); -%>

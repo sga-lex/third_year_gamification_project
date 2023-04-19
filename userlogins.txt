@@ -1,0 +1,22 @@
+daisy duck
+daisy@duck.com
+1234
+User
+
+micky mouse
+micky@mouse.com
+4321
+Admin
+
+goofy
+goofy@disney1.com
+54321
+User
+
+mortimer mouse
+mortimer@mouse.com
+2468
+Admin
+
+pluto
+disney1
