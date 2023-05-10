@@ -41,9 +41,9 @@
   </thead>
   <tbody>
     <% savedUsers.sort(function(a, b) { return b.score - a.score; }); %>
-    <% savedUsers.forEach(function(user, index) { %>
+    <% savedUsers.forEach(function(user, rank) { %>
     <tr>
-      <td><%= user.username %><%= index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '' %></td>
+      <td><%= user.username %><%= rank === 0 ? '🥇' : rank === 1 ? '🥈' : rank === 2 ? '🥉' : '' %></td>
       <td><%= user.score %></td>
     </tr>
     <% }); %>
