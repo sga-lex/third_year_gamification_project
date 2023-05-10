@@ -128,7 +128,7 @@ app.get("/about", isLoggedIn, function(req, res) {
 });
 
 app.post("/delete", function(req, res){
-  const checkedItemID = req.body.checkbox; // item being sent from form
+  const checkedItemID = req.body.checkbox; 
   const urgency = req.body.urgency;
   TicketDetails.findByIdAndDelete(checkedItemID, function (err, docs) {
       if (err){
